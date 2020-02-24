@@ -21,7 +21,7 @@ def annotate_peaks(peak_bed, annotation_bed):
     """
     # Initialize array for output
     output = pd.DataFrame(columns=['peak_id', 'gene_name', 'gene_id', 'gene_type', 'chr', 'start', 'stop',
-                                   'strand', 'enrichment_score', '-log(pval)', 'feature', 'exon_type'])
+                                   'strand', 'feature', 'exon_type'])
 
     # Get intersection of peak bed file with annotation bed file
     # intersect = peak_bed.intersect(annotation_bed, wa=True, wb=True, s=True)

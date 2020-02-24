@@ -11,8 +11,11 @@ def peak_summary(apeak):
 
     # Iterate through file and count
     for ln in f:
+        print(ln)
         # Skip header
         if ln[0] == 'peak_id':
+            continue
+        if ln[10] == '':
             continue
 
         # Count feature type
@@ -25,7 +28,7 @@ def peak_summary(apeak):
                 annotation_count[feat] += 1
 
     # Save summary to csv file
-    feat_count_df = pd.DataFrame.from_dict(annotation_count)
+    feat_count_df = pd.DataFrame.from_dict([annotation_count])
     feat_count_df = feat_count_df[['intergenic', 'exon', 'intron', 'exon-intron', 'CDS', 'five_prime_UTR',
                                    'three_prime_UTR']]
     feat_count_df.replace(r'\s+', 0, regex=True, inplace=True)

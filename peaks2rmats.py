@@ -9,9 +9,12 @@ def rmats_eclip_intersect(rmats_file, peak_file):
     ap = pd.read_csv(peak_file)
     ap_input = """"""
     for index, row in ap.iterrows():
-        line = ' '.join([row['chr'], str(row['start']), str(row['stop']), row['peak_id'], '.', row['strand'],
-                         row['feature'], str(row['exon_type']), str(row['gene_id'])])
-        ap_input = ap_input + line + '\n'
+        try:
+            line = ' '.join([row['chr'], str(row['start']), str(row['stop']), row['peak_id'], '.', row['strand'],
+                             row['feature'], str(row['exon_type']), str(row['gene_id'])])
+            ap_input = ap_input + line + '\n'
+        except:
+            continue
 
     peaks = BedTool(ap_input, from_string=True)
 
