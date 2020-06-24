@@ -18,7 +18,7 @@ if __name__ == '__main__':
                                      prog="annotate_peaks.py")
     optional = parser._action_groups.pop()
     required = parser.add_argument_group('required arguments')
-    required.add_argument("-p", type=str, default=None, metavar="peak_file", help="specify path to peak file.",
+    required.add_argument("-pk", type=str, default=None, metavar="peak_file", help="specify path to peak file.",
                           required=True)
     required.add_argument("-gbed", type=str, default=None, metavar="gff_bed", help="specify path to gff3 bed file.",
                           required=True)
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Label peaks
-    license.peak_label(args.p)
+    license.peak_label(args.pk)
 
     # Perform annotation intersection
     peak_bt = BedTool('peaks.bed')
