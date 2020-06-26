@@ -18,7 +18,7 @@ if __name__ == '__main__':
                                          prog="peaks2rmats.py")
     optional = parser._action_groups.pop()
     required = parser.add_argument_group('required arguments')
-    required.add_argument("-r", type=str, default=None, metavar="rmats_file",
+    required.add_argument("-rf", type=str, default=None, metavar="rmats_file",
                           help="specify path to filtered rmats file", required=True)
     required.add_argument("-ap", type=str, default=None, metavar="annotated_peak file",
                           help="specify path to annotated peaks file", required=True)
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Perform clip intersection
-    intersection_df = license.rmats_eclip_intersect(args.r, args.ap)
+    intersection_df = license.rmats_eclip_intersect(args.rf, args.ap)
     intersection_df.to_csv('rmats_with_clip.csv', index=False)
 
     print('Summary complete!')
