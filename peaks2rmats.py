@@ -22,6 +22,8 @@ if __name__ == '__main__':
                           help="specify path to filtered rmats file", required=True)
     required.add_argument("-ap", type=str, default=None, metavar="annotated_peak file",
                           help="specify path to annotated peaks file", required=True)
+    required.add_argument("-out", type=str, default=None, metavar="output_dir", help="specify desired output path.",
+                          required=True)
     optional.add_argument("-l", "--license", action=licenseAction, metavar="", nargs=0,
                           help='show license status and exit')
     parser._action_groups.append(optional)
@@ -29,6 +31,6 @@ if __name__ == '__main__':
 
     # Perform clip intersection
     intersection_df = license.rmats_eclip_intersect(args.rf, args.ap)
-    intersection_df.to_csv('rmats_with_clip.csv', index=False)
+    intersection_df.to_csv(args.out + '/rmats_with_clip.csv', index=False)
 
     print('Summary complete!')

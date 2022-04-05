@@ -19,18 +19,18 @@ if __name__ == '__main__':
     required = parser.add_argument_group('required arguments')
     required.add_argument("-gff", type=str, default=None, metavar="GFF", help="specify path to gff3 file.",
                           required=True)
-    required.add_argument("-out", type=str, default=None, metavar="OUTPUT BED",
-                          help="specify desired label for output.", required=True)
+    required.add_argument("-out", type=str, default=None, metavar="OUTPUT DIR",
+                          help="specify desired output path.", required=True)
     optional.add_argument("-l", "--license", action=licenseAction, metavar="", nargs=0,
                           help='show license status and exit')
     parser._action_groups.append(optional)
     args = parser.parse_args()
 
     # Convert gff to bed
-    license.gff2bed(args.gff, 'features.bed')
+    license.gff2bed(args.gff, args.out + '/features.bed')
 
     # Create introns.bed
-    license.get_introns('features.bed')
+    license.get_introns(args.out + '/features.bed', args.out)
 
     # Merge beds
-    license.merge_bed('features.bed', 'introns.bed', args.out)
+    license.merge_bed(args.out + '/features.bed', args.out + '/introns.bed', args.out + '/annotation.bed')

@@ -3,5 +3,10 @@
 compile.py
 license.py
 license.c
+license.key
 main.py
 /build
+license_setup.py
+license_setup.c
+/license
+/.ipynb_checkpoints

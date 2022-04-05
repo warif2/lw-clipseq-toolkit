@@ -42,22 +42,20 @@ if __name__ == '__main__':
 		for files in files_list:
 			if os.path.isfile(sys.argv[2] + files):
 				files = sys.argv[2] + files
-				if not license.rmats_filter(files, sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]):
+				if not license.rmats_filter(files, sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7]):
 					print("Could not filter %s, not an rMATS output." % files)
 					sys.exit()
 		print(" ")
-		print("Filtered all files with great success. Your welcome! Dont forget to acknowledge the great leweezard ")
-		print("on your publication.")
+		print("Filtering of rMATS output complete!")
 
 	elif sys.argv[1] == "-f":
-		if not license.rmats_filter(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]):
+		if not license.rmats_filter(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7]):
 			print("Could not filter %s, not an rMATS output." % (sys.argv[2]))
 			sys.exit()
 
 		print(" ")
-		print("Filtered all files with great success. Your welcome! Dont forget to acknowledge the great leweezard")
-		print(" on your publication.")
+		print("Filtering of rMATS output complete!")
 
 	else:
-		print("Usage: python rmats_filter_lw.py [-h] [-d Directory | -f File] [FDR] [IncLevelDiff] [Counts]")
+		print("Usage: python rmats_filter_lw.py [-h] [-d Directory | -f File] [FDR] [IncLevelDiff] [Counts] [Output_directory")
 		print("Refer to python rmats_filter_lw.py -h for documentation.")

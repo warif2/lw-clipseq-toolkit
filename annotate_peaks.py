@@ -22,17 +22,19 @@ if __name__ == '__main__':
                           required=True)
     required.add_argument("-gbed", type=str, default=None, metavar="gff_bed", help="specify path to gff3 bed file.",
                           required=True)
+    required.add_argument("-out", type=str, default=None, metavar="output_dir",help="specify desired output path.",
+                          required=True)
     optional.add_argument("-l", "--license", action=licenseAction, metavar="", nargs=0,
                           help='show license status and exit')
     parser._action_groups.append(optional)
     args = parser.parse_args()
 
     # Label peaks
-    license.peak_label(args.pk)
+    license.peak_label(args.pk, args.out)
 
     # Perform annotation intersection
-    peak_bt = BedTool('peaks.bed')
+    peak_bt = BedTool(args.out + '/peaks.bed')
     annotation_bt = BedTool(args.gbed)
     output_df = license.annotate_peaks(peak_bt, annotation_bt)
-    output_df.to_csv('annotated_peaks.csv', index=False)
+    output_df.to_csv(args.out + '/annotated_peaks.csv', index=False)
     print('Finished annotating peaks.')

@@ -19,10 +19,12 @@ if __name__ == '__main__':
     required = parser.add_argument_group('required arguments')
     required.add_argument("-ap", type=str, default=None, metavar="annotated_peak file",
                           help="specify path to annotated peaks file.", required=True)
+    required.add_argument("-out", type=str, default=None, metavar="output_dir", help="specify desired output path.",
+                          required=True)
     optional.add_argument("-l", "--license", action=licenseAction, metavar="", nargs=0,
                           help='show license status and exit')
     parser._action_groups.append(optional)
     args = parser.parse_args()
 
-    license.peak_summary(args.ap)
+    license.peak_summary(args.ap, args.out)
     print('Summary complete!')
